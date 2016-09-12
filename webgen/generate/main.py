@@ -1,0 +1,57 @@
+from . import generate, api
+from random import randint
+import time
+
+
+# main function that calls all functions in generate.py and returns an html string
+def build_web_page():
+    print('Generating title, header and css')
+    time.sleep(3)
+    page_title = generate.gen_title()
+    page_title_html = "<title>" + page_title + "</title>"
+    header_title = generate.random_url_header()
+    page_css = generate.gen_page_css()
+    static_assets_html = ""
+    random_number_assets = randint(7, 15)
+    counter = 0
+
+    while counter < random_number_assets:
+        print('Number of assets generated: ' + str(counter + 1))
+        static_assets_html = static_assets_html + generate.gen_asset() + "\n"
+        counter += 1
+
+    counter_2 = 0
+    random_number_assets_2 = randint(2, 5)
+
+    while counter_2 < random_number_assets_2:
+        print('Number of paragraphs generated: ' + str(counter_2 + 1))
+        static_assets_html = static_assets_html + generate.gen_paragraphs() + "\n"
+        counter_2 += 1
+
+    header_title_html = "<h1 style='z-index: 300; position: relative; background: #fff;'>" + header_title + "</h1>"
+
+    html_open = "<!DOCTYPE html>\n<html>\n"
+    html_close = "\n</html>"
+    head = "<head>\n" + page_title_html + "\n" + page_css + "\n</head>\n"
+    body = "<body>\n" + header_title_html + "\n<div id='centerContainer'>\n" + static_assets_html + "\n</div>\n</body>"
+
+    # placeholder for generating random body text
+    print('Website Generated... Time to Cringe :)')
+    time.sleep(3)
+    return html_open + head + body + html_close
+
+
+# creates file called index.html and inserts returned value from build_web_page()
+def write_to_file():
+    file_name = "index.html"
+    file = open(file_name, 'w')
+    file.write(build_web_page())
+
+# while loop that will continue to run unless it runs into a TypeError
+# (an error that occurs when there are no gif results for the random word generated)
+while not api.flag:
+    try:
+        write_to_file()
+    except TypeError:
+        generate.link = api.get_random_query()[0]
+        pass

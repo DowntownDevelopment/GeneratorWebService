@@ -17,7 +17,10 @@
 
     <div class="container">
         <div id="inner">
-            <button type="button" name="button" class="btn">Generate New Page</button>
+            <form action=' {% url 'generate' %}' method="POST">
+                {% csrf_token %}
+            <button type="submit" name="button" class="btn">Generate New Page</button>
+            </form>
         </div>
     </div>
 </body>
