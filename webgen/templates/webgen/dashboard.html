@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GENER8</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'webgen/Supernice.css' %}">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                <img alt="Brand" style="height: 100%" src="{% static 'webgen/icons/png/laptop.png' %}">
+              </a>
+              <a id="brand-name" class="navbar-brand" href="#"><strong>W E B</strong> G E N E R 8 O R</a>
+          </div>
+
+                <form class="navbar-form navbar-right">
+                    <button type="submit" class="btn btn-primary">G E N E R 8</button>
+                </form>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Dashboard</h1>
+            <p>View your saved webpages, and your feed based on whom you follow.</p>
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 btn-group-wrap">
+              <div class="btn-group text-center" role="group">
+                  <button type="button" class="btn btn-default">
+                    F O L L O W I N G
+                  </button>
+
+                  <button type="button" class="btn btn-default">
+                      F O L L O W E R S
+                  </button>
+
+                  <button type="button" class="btn btn-default">
+                      R E C O M M E N D E D
+                  </button>
+              </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12">
+              <h2>Feed</h2>
+              <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend quam nec convallis accumsan.
+                  Nulla in pellentesque massa. Suspendisse vestibulum posuere quam, sed tincidunt metus suscipit et.
+                  Aenean aliquam id neque id interdum. Sed vehicula in ligula id volutpat. Maecenas a bibendum orci.
+                  Duis placerat id lectus in sagittis. Maecenas eleifend ipsum at diam eleifend congue.
+              </p>
+
+            {% autoescape off %}
+            {% for ting in html %}
+
+                {{ ting.html_string }}
+
+            {% endfor %}
+            {% endautoescape %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <hr>
+     <footer>
+         &copy; 2016 NewCollar, Inc.
+     </footer>
+    </div>
+
+
+</body>
+</html>
